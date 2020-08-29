@@ -8,7 +8,7 @@ Learning automata (LA) are machine learning technique which are used primarily t
 
 <h2>Types of Learning Automata Used</h2>
 
-The primary difference between different learning schemes is how to automaton chooses its action and how it adapts to the response from the environment. Learning automata fall into one of two main categories; deterministic and stochastic. With stochastic automata being broken down into two more types fixed structure stochastic automata (FSSA) and variable structure stochastic automata (VSSA). The Tsetlin and Krinsky are examples of deterministic automata while the Krylov and LRI scheme are stochastic. Furthermore, the Krylov is an example of an FSSA and the LRI is a VSSA.
+The primary difference between different learning schemes is how to automaton chooses its action and how it adapts to the response from the environment. Learning automata fall into one of two main categories; deterministic and stochastic. With stochastic automata being broken down into two more types fixed structure stochastic automata (FSSA) and variable structure stochastic automata (VSSA). The Tsetlin and Krinsky are examples of deterministic automata while the Krylov and LRI scheme are stochastic. Furthermore, the Krylov is an example of an FSSA and the LRI a VSSA.
 
 <h3>Tsetlin Automaton</h3>
 Chooses an initial action uniformly at random with minimum confidence. If the environment responds with a reward the action confidence is increased by one level, or confidence remains the same if it is at the maximum value. If a penalty is received then the confidence is reduced by one level. If the confidence in an action falls below the minimum value the automaton switches to a new action with a minimum level of confidence.
@@ -21,3 +21,12 @@ Chooses an initial action uniformly at random with minimum confidence. Reward be
 
 <h3>LRI (Linear Reward-Inaction) Scheme</h3>
 The automaton maintains a probability vector and an action is chosen based on the distribution given by the vector every iteration. The probabilities change over time based on the responses from the environment with a user specified learning rate, λ, used to control the speed at which the vector changes. The automaton modifies its probability vector only upon receiving a reward. The action that caused the reward from the environment has its probability of being selected increased and all other actions have their probabilities decreased.
+
+<h2>Project Specifics</h2>
+
+<h3>Problem</h3>
+The problem being dealt with in this project is a version of the elevator problem. An elevator in a building with six floors must determine the best floor to wait on between requests so as to minimize the wait time for the next passenger. The probability distribution of requests from one floor to another is unknown but the wait time for each floor can quantified by the equation<br>
+**f(x)** = (0.8)(**Q(x)**) + (0.4) * (CEIL(**Q(x)** / 2)) + h where<br>
+**x** is the floor the elevator is on, **x ε {1, 2, ..., 6}**<br>
+**Q(x)** maps a floor to a unique value, **Q(x) ε {1, 2, ..., 6}** by a one-to-one and onto mapping<br>
+**h** is random noise, **h ~ N(0, 1)**<br>
