@@ -8,6 +8,12 @@ public class Krinsky extends Automaton {
 		super();
 	}
 	
+	/** 
+	Krinsky implementation of response adaptation.
+	On reward: increase the confidence in the action to its maximum value.
+	On penalty: decrease the confidence in the action by one level and move to next action
+	if confidence is below minimum threshold
+	**/
 	@Override
 	public void adjustAction(Response response) {
 		if(response == Response.REWARD) {
