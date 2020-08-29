@@ -26,7 +26,11 @@ The automaton maintains a probability vector and an action is chosen based on th
 
 <h3>Problem</h3>
 The problem being dealt with in this project is a version of the elevator problem. An elevator in a building with six floors must determine the best floor to wait on between requests so as to minimize the wait time for the next passenger. The probability distribution of requests from one floor to another is unknown but the wait time for each floor can quantified by the equation<br>
-**f(x)** = (0.8)(**Q(x)**) + (0.4) * (CEIL(**Q(x)** / 2)) + h where<br>
+
+**f(x)** = 0.8 * **Q(x)** + 0.4 * CEIL(**Q(x)** / 2) + h where<br>
 **x** is the floor the elevator is on, **x ε {1, 2, ..., 6}**<br>
-**Q(x)** maps a floor to a unique value, **Q(x) ε {1, 2, ..., 6}** by a one-to-one and onto mapping<br>
+**Q(x)** maps a floor to a unique value by a one-to-one and onto mapping, **Q(x) ε {1, 2, ..., 6}**<br>
 **h** is random noise, **h ~ N(0, 1)**<br>
+
+<h3>Experiments</h3>
+By default an ensemble of 100 experiments are performed with each experiment being made up of 10,000 training iterations and 1,000 testing iterations. In each iteration a reuqest is made to take a passenger from one floor to another after which the elevator chooses a floor to wait on for the next request. The environment will respond with a reward or a penalty based on this choice. The environment responds probabilistically based on the wait time for the next passenger.
