@@ -8,6 +8,12 @@ public class Tsetlin extends Automaton {
 		super();
 	}
 
+	/** 
+	Tsetlin implementation of response adaptation.
+	On reward: increase the confidence in the action by one level, not exceeding the maximum threshold
+	On penalty: decrease the confidence in the action by one level and move to next action
+	if confidence is below minimum threshold
+	**/
 	@Override
 	public void adjustAction(Response response) {
 		if(response == Response.REWARD) {
