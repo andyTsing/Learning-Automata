@@ -8,6 +8,11 @@ public class Krylov extends Automaton {
 		super();
 	}
 	
+	/** 
+	Krylov implementation of response adaptation.
+	On reward: increase the confidence in the action by level not exceeding the maximum threshold.
+	On penalty: increase or decrease confidence in the action by one level; each with probability 1/2
+	**/
 	@Override
 	public void adjustAction(Response response) {
 		if(response == Response.REWARD) {
