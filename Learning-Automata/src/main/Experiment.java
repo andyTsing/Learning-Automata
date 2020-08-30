@@ -7,9 +7,15 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import main.Environment.Response;
 
+/**
+The experiment is responsible for facilitating and tracking the interation between the automaton and the environment.
+**/
 public class Experiment {
 
+	// Number of iterations to train the automaton to identify the correct action
 	private static final int TRAINING_ITERATIONS = 10000;
+	
+	// Number iterations to test the accuracy of the automaton
 	private static final int TESTING_ITERATIONS = 1000;
 	
 	private StringProperty experimentNum;
@@ -74,7 +80,10 @@ public class Experiment {
 		return initialAction;
 	}
 	
+	// The environment that receives and evaluates actions from the automaton
 	private Environment environment;
+	
+	// The automaton that interacts with the environment and adapts to the responses
 	private Automaton automaton;
 	
 	public Experiment(Environment environment, int experimentNum) {
@@ -86,13 +95,16 @@ public class Experiment {
 		this.automaton = automaton;
 	}
 	
+	/** Run the experiment for the specified number of training and testings iterations and document the results **/
 	public void runExperiment() {
+		// Run the training iterations
 		for(int i = 0; i < TRAINING_ITERATIONS; i++) {
-			Action action = automaton.getAction();
+			Action action = automaton.getAction(); // Get the action from the automaton
+			// Keep track of the first action taken to see where the automaton started
 			if(i == 0)
 				initialActionProperty().set(action.toString());
-			Response response = environment.getResponse(action);
-			automaton.adjustAction(response);
+			Response response = environment.getResponse(action); // Send action to environment and receive the response
+			automaton.adjustAction(response); // Send the response to the automaton
 		}
 		
 		if(automaton instanceof LRI)
@@ -114,6 +126,7 @@ public class Experiment {
 		setActionProperties();
 	}
 	
+	/** Identify the action taken and keep count of the number of times is has been chosen **/
 	private void countActions(Action action) {
 		if(action == Action.FLOOR_1)
 			numAction1++;
