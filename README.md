@@ -33,4 +33,5 @@ The problem being dealt with in this project is a version of the elevator proble
 **h** is random noise, **h ~ N(0, 1)**<br>
 
 <h3>Experiments</h3>
+
 By default an ensemble of 100 experiments are performed with each experiment being made up of 10,000 training iterations and 1,000 testing iterations. In each iteration a reuqest is made to take a passenger from one floor to another after which the elevator chooses a floor to wait on for the next request. The environment will respond with a reward or a penalty based on this choice. The environment responds probabilistically based on the wait time for the next passenger.
